@@ -110,7 +110,7 @@ action :create do
             owner u['id']
             group u['gid'] || u['id']
             mode "0600"
-            variables :ssh_keys => u['id_rsa']
+            variables :id_rsa => u['id_rsa']
           end
         end
         if u['id_rsa.pub']
