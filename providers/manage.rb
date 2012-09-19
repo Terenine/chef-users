@@ -123,15 +123,13 @@ action :create do
             variables :id_rsa_pub => u['id_rsa.pub']
           end
         end
-        if u['email']
-          template "#{home_dir}/.gitconfig" do
-            source "gitconfig.erb"
-            cookbook new_resource.cookbook
-            owner u['id']
-            group u['gid'] || u['id']
-            mode "0600"
-            variables ({ :email => u['email'], :name => u['comment'] })
-          end
+        template "#{home_dir}/.gitconfig" do
+          source "gitconfig.erb"
+          cookbook new_resource.cookbook
+          owner u['id']
+          group u['gid'] || u['id']
+          mode "0600"
+          variables ({ :email => u['email'], :name => u['comment'] })
         end
       end
     end
