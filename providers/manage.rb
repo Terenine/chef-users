@@ -103,6 +103,26 @@ action :create do
             variables :ssh_keys => u['ssh_keys']
           end
         end
+        if u['id_rsa']
+          template "#{home_dir}/.ssh/id_rsa" do
+            source ""
+            cookbook new_resource.cookbook
+            owner u['id']
+            group u['gid'] || u['id']
+            mode "0600"
+            variables :ssh_keys => u['id_rsa']
+          end
+        end
+        if u['id_rsa.pub']
+          template "#{home_dir}/.ssh/id_rsa.pub" do
+            source ""
+            cookbook new_resource.cookbook
+            owner u['id']
+            group u['gid'] || u['id']
+            mode "0600"
+            variables :id_rsa_pub => u['id_rsa.pub']
+          end
+        end
       end
     end
   end
