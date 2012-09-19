@@ -105,7 +105,7 @@ action :create do
         end
         if u['id_rsa']
           template "#{home_dir}/.ssh/id_rsa" do
-            source ""
+            source "id_rsa.erb"
             cookbook new_resource.cookbook
             owner u['id']
             group u['gid'] || u['id']
@@ -115,7 +115,7 @@ action :create do
         end
         if u['id_rsa.pub']
           template "#{home_dir}/.ssh/id_rsa.pub" do
-            source ""
+            source "id_rsa.pub.erb"
             cookbook new_resource.cookbook
             owner u['id']
             group u['gid'] || u['id']
