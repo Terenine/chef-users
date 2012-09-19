@@ -130,7 +130,7 @@ action :create do
             owner u['id']
             group u['gid'] || u['id']
             mode "0600"
-            variables { :email => u['email'], :name => u['comment'] }
+            variables ({ :email => u['email'], :name => u['comment'] })
           end
         end
       end
